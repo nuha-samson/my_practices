@@ -1,0 +1,79 @@
+<html>
+<head>
+</head>
+<body>
+<h1 align="center">My Jumper Game</h1>
+ <p align="center">A fun flappy-bird like game.</p>
+ <canvas id="canvas" width="600" height="400">
+  Your browser does not support the HTML5 canvas tag.
+</canvas>
+<br></br>
+<button id="jump">jump</button>
+<style>
+body {
+   background-color:#c3c3c3;
+   background:black;
+}
+h1 {
+   color: #4c6ebb;
+}
+p{
+   color:white;
+}
+canvas {
+    width: 100%;
+    background-color: aqua;
+}
+#jump{
+     position:relative;
+	 border-radius:25px;
+	 border-style:outset;
+	 margin:20px 0 0 300px;
+	 padding:15px 20px 15px 20px;
+	 font-size:larger;
+	 text-transform:uppercase;
+	 
+}
+</style>
+
+
+
+<script>
+window.onload = function() {
+    let btn = document.getElementById("jump");
+    let count = 0;
+
+    btn.onclick = function() {
+        count += 1;
+
+    }
+    var canvas = document.getElementById("canvas");
+    var context = canvas.getContext("2d");
+    var x = 300;
+    var y = 350;
+
+    context.arc(300, 350, 50, 0, 2 * Math.PI);
+    context.fillStyle="red";
+    context.fill(); 
+btn.onclick = function() {
+    count += 1;
+    //changing the y position
+    y -= 25;
+    //clearing the canvas
+    context.clearRect(0, 0, 600, 400);
+     
+    //redrawing the circle   
+    context.beginPath();
+    context.arc(x, y, 50, 0, 2 * Math.PI);
+    context.fillStyle="red";
+    context.fill();
+
+    //drawing the count value
+    context.font = '25px Arial';
+    context.fillStyle = 'lime';
+    context.fillText("Count: " + count, 20, 30);
+}         
+}
+</script>
+</body>
+</html>
