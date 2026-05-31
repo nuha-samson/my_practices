@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Piano</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            background:
+                radial-gradient(circle at top, #2d2d2d, #111);
+
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        p {
+            color: #bdbdbd;
+            margin-bottom: 40px;
+        }
+
+        .piano {
+            position: relative;
+            display: flex;
+        }
+
+        .white-key {
+            width: 90px;
+            height: 320px;
+
+            background: white;
+            border: 2px solid #222;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+
+            padding-bottom: 20px;
+
+            cursor: pointer;
+
+            transition: all .07s ease;
+        }
+
+        .white-key kbd {
+            color: #333;
+            font-size: 1.3rem;
+            font-weight: bold;
+        }
+
+        .black-key {
+            position: absolute;
+
+            width: 60px;
+            height: 200px;
+
+            background: #111;
+            border: 2px solid #000;
+
+            border-radius: 0 0 10px 10px;
+
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+
+            padding-bottom: 15px;
+
+            color: white;
+            cursor: pointer;
+
+            z-index: 2;
+
+            transition: all .07s ease;
+        }
+
+        .black-key kbd {
+            font-size: 1rem;
+        }
+
+        .playing {
+            transform: translateY(8px);
+            box-shadow: 0 0 20px gold;
+        }
+
+        .black-key.playing {
+            background: #ffc107;
+            color: black;
+        }
+
+        .white-key.playing {
+            background: #ffe082;
+        }
+
+        .c-sharp {
+            left: 60px;
+        }
+
+        .d-sharp {
+            left: 150px;
+        }
+
+        .f-sharp {
+            left: 330px;
+        }
+
+        .g-sharp {
+            left: 420px;
+        }
+
+        .a-sharp {
+            left: 510px;
+        }
+
+        @media(max-width:900px) {
+
+            .white-key {
+                width: 60px;
+                height: 240px;
+            }
+
+            .black-key {
+                width: 40px;
+                height: 150px;
+            }
+
+            .c-sharp {
+                left: 40px;
+            }
+
+            .d-sharp {
+                left: 100px;
+            }
+
+            .f-sharp {
+                left: 220px;
+            }
+
+            .g-sharp {
+                left: 280px;
+            }
+
+            .a-sharp {
+                left: 340px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>🎹 Virtual Piano</h1>
+    <p>Press keyboard keys to play notes</p>
+
+    <div class="piano">
+
+        <!-- White Keys -->
+
+        <div class="white-key key" data-key="65">
+            <kbd>A</kbd>
+        </div>
+
+        <div class="white-key key" data-key="83">
+            <kbd>S</kbd>
+        </div>
+
+        <div class="white-key key" data-key="68">
+            <kbd>D</kbd>
+        </div>
+
+        <div class="white-key key" data-key="70">
+            <kbd>F</kbd>
+        </div>
+
+        <div class="white-key key" data-key="71">
+            <kbd>G</kbd>
+        </div>
+
+        <div class="white-key key" data-key="72">
+            <kbd>H</kbd>
+        </div>
+
+        <div class="white-key key" data-key="74">
+            <kbd>J</kbd>
+        </div>
+
+        <!-- Black Keys -->
+
+        <div class="black-key key c-sharp" data-key="87">
+            <kbd>W</kbd>
+        </div>
+
+        <div class="black-key key d-sharp" data-key="69">
+            <kbd>E</kbd>
+        </div>
+
+        <div class="black-key key f-sharp" data-key="84">
+            <kbd>T</kbd>
+        </div>
+
+        <div class="black-key key g-sharp" data-key="89">
+            <kbd>Y</kbd>
+        </div>
+
+        <div class="black-key key a-sharp" data-key="85">
+            <kbd>U</kbd>
+        </div>
+
+    </div>
+
+    <!-- WHITE KEYS -->
+    
+    <audio data-key="65"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/C4.mp3"></audio>
+    
+    <audio data-key="83"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/D4.mp3"></audio>
+    
+    <audio data-key="68"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/E4.mp3"></audio>
+    
+    <audio data-key="70"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/F4.mp3"></audio>
+    
+    <audio data-key="71"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/G4.mp3"></audio>
+    
+    <audio data-key="72"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/A4.mp3"></audio>
+    
+    <audio data-key="74"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/B4.mp3"></audio>
+    
+    <!-- BLACK KEYS -->
+    
+    <audio data-key="87"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/Db4.mp3"></audio>
+    
+    <audio data-key="69"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/Eb4.mp3"></audio>
+    
+    <audio data-key="84"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/Gb4.mp3"></audio>
+    
+    <audio data-key="89"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/Ab4.mp3"></audio>
+    
+    <audio data-key="85"
+        src="https://gleitz.github.io/midi-js-soundfonts/FluidR3_GM/acoustic_grand_piano-mp3/Bb4.mp3"></audio>
+
+    <script>
+
+        // YOUR MISSION:
+
+        // playSound()
+
+        // removeTransition()
+
+        // querySelectorAll(".key")
+
+        // forEach()
+
+        // transitionend
+
+        // keydown
+function playPiano(e){
+const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+
+if(!audio) return;
+audio.currentTime = 0;
+audio.play();
+
+const key = document.querySelector(`.key[data-key = "${e.keyCode}"]`);
+key.classList.add('white-key');
+
+}
+
+const removeTransition = (e) => {
+this.classList.removeClass('playing');
+}
+
+    const keys = document.querySelectorAll('.key');
+    const key = document.querySelector(`.key[data-key = "${e.keyCode}"]`);
+
+    keys.forEach(key => {
+
+    });
+window.addEventListener('keydown', playPiano);
+    </script>
+</body>
+</html>
