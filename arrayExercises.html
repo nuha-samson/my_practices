@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>University Analytics 💻</title>
+</head>
+
+<body>
+    <h1>Open the Console 🔥</h1>
+
+    <script>
+
+        const applicants = [
+            {
+                first: 'Nura',
+                department: 'Software Engineering',
+                entranceExam: 540,
+                grade12: 94
+            },
+            {
+                first: 'Ali',
+                department: 'Civil Engineering',
+                entranceExam: 480,
+                grade12: 88
+            },
+            {
+                first: 'Sara',
+                department: 'Software Engineering',
+                entranceExam: 600,
+                grade12: 97
+            },
+            {
+                first: 'Ahmed',
+                department: 'Architecture',
+                entranceExam: 450,
+                grade12: 80
+            },
+            {
+                first: 'Hana',
+                department: 'Software Engineering',
+                entranceExam: 570,
+                grade12: 91
+            },
+            {
+                first: 'Yonas',
+                department: 'Architecture',
+                entranceExam: 510,
+                grade12: 86
+            },
+            {
+                first: 'Mahi',
+                department: 'Medicine',
+                entranceExam: 620,
+                grade12: 98
+            },
+            {
+                first: 'Khalid',
+                department: 'Civil Engineering',
+                entranceExam: 530,
+                grade12: 89
+            }
+        ];
+
+        // ==========================================
+        // FILTER
+        // ==========================================
+
+        const fiveHundred = applicants.filter(
+            student => student.entranceExam >= 500
+        );
+        console.table(fiveHundred);
+
+        const ninty = applicants.filter(
+            student => student.grade12 >= 90
+        );
+        console.table(ninty);
+
+        const field = applicants.filter(
+            student => student.department == 'Software Engineering'
+        );
+        console.table(field);
+
+        const between = applicants.filter(
+            student =>
+                student.entranceExam >= 500 &&
+                student.entranceExam <= 600
+        );
+        console.table(between);
+
+        // ==========================================
+        // MAP
+        // ==========================================
+
+        const names = applicants.map(
+            student => student.first
+        );
+        console.log(names);
+
+        const score = applicants.map(
+            student => student.entranceExam
+        );
+        console.log(score);
+
+        const department = applicants.map(
+            student => `${student.first} - ${student.department}`
+        );
+        console.log(department);
+
+        // FIXED
+        const entrance = applicants.map(student => ({
+            name: student.first,
+            score: student.entranceExam
+        }));
+        console.log(entrance);
+
+        // ==========================================
+        // SORT
+        // ==========================================
+
+        const des = [...applicants].sort(
+            (a, b) => a.entranceExam > b.entranceExam ? 1 : -1
+        );
+        console.table(des);
+
+        const aes = [...applicants].sort(
+            (a, b) => a.entranceExam < b.entranceExam ? 1 : -1
+        );
+        console.table(aes);
+
+        const grade = [...applicants].sort(
+            (a, b) => a.grade12 > b.grade12 ? 1 : -1
+        );
+        console.table(grade);
+
+        // FIXED
+        const alpha = [...applicants].sort(
+            (a, b) => a.first.localeCompare(b.first)
+        );
+        console.table(alpha);
+
+        // ==========================================
+        // REDUCE
+        // ==========================================
+
+        const total = applicants.reduce(
+            function (sum, a) {
+                return sum += a.entranceExam;
+            },
+            0
+        );
+
+        console.log(total);
+
+        console.log(total / applicants.length);
+
+        const summ = applicants.reduce(
+            function (a, b) {
+                return a += b.grade12;
+            },
+            0
+        );
+
+        console.log(summ);
+
+        // FIXED
+        const highest = applicants.reduce(
+            (a, b) =>
+                a.entranceExam > b.entranceExam
+                    ? a
+                    : b
+        );
+
+        console.log(highest);
+
+        // FIXED
+        const lowest = applicants.reduce(
+            (a, b) =>
+                a.entranceExam < b.entranceExam
+                    ? a
+                    : b
+        );
+
+        console.log(lowest);
+
+        // ==========================================
+        // BOSS LEVEL 🔥
+        // ==========================================
+
+        // FIXED
+        const departmentCount = applicants.reduce(
+            (acc, applicant) => {
+
+                if (acc[applicant.department]) {
+                    acc[applicant.department]++;
+                } else {
+                    acc[applicant.department] = 1;
+                }
+
+                return acc;
+            },
+            {}
+        );
+
+        console.log(departmentCount);
+
+        /*
+        {
+          "Software Engineering": 3,
+          "Civil Engineering": 2,
+          "Architecture": 2,
+          "Medicine": 1
+        }
+        */
+
+        // FIXED
+        const groupedDepartments = applicants.reduce(
+            (acc, applicant) => {
+
+                if (!acc[applicant.department]) {
+                    acc[applicant.department] = [];
+                }
+
+                acc[applicant.department].push(applicant);
+
+                return acc;
+            },
+            {}
+        );
+
+        console.log(groupedDepartments);
+
+        // ==========================================
+        // FINAL BOSS
+        // ==========================================
+
+        const departmentAverages = Object.entries(groupedDepartments)
+            .map(([department, students]) => {
+
+                const totalScore = students.reduce(
+                    (sum, student) =>
+                        sum + student.entranceExam,
+                    0
+                );
+
+                return {
+                    department,
+                    averageScore:
+                        totalScore / students.length
+                };
+            })
+            .sort(
+                (a, b) =>
+                    b.averageScore - a.averageScore
+            );
+
+        console.table(departmentAverages);
+
+        console.log(
+            'Highest Average Department:',
+            departmentAverages[0]
+        );
+
+    </script>
+</body>
+
+</html>
