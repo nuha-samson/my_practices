@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>color picker</title>
+</head>
+<body class = "body">
+   <style>
+    :root {
+    --body: black;
+    }
+    body{
+        display: grid;
+        place-items: centre; 
+       
+    }
+    .control{
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: var(--body);
+    }
+   </style> 
+
+   <div class="control">
+    <input type="color">
+</div>
+<script>
+    const input = document.querySelector('input');
+    input.addEventListener("change" ,function colorChanger(){
+    const bdy = document.querySelector('.control');
+    bdy.style.background = this.value
+   
+    });
+</script>
+</body>
+</html>
