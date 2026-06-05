@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Developer Analytics 🚀</title>
+</head>
+
+<body>
+    <h1>Open the Console 🔥</h1>
+
+    <script>
+
+        const developers = [
+            { name: 'Nura', age: 19, language: 'JavaScript', projects: 8 },
+            { name: 'Ali', age: 21, language: 'Python', projects: 4 },
+            { name: 'Sara', age: 20, language: 'JavaScript', projects: 15 },
+            { name: 'Ahmed', age: 18, language: 'C++', projects: 2 },
+            { name: 'Hana', age: 22, language: 'Java', projects: 12 },
+            { name: 'Yonas', age: 17, language: 'JavaScript', projects: 1 }
+        ];
+
+        const posts = [
+            { title: 'Learn JavaScript', likes: 120, id: 101 },
+            { title: 'DSA Roadmap', likes: 350, id: 102 },
+            { title: 'Full Stack Journey', likes: 290, id: 103 },
+            { title: 'Codeforces Tips', likes: 420, id: 104 },
+            { title: 'How I Got My Internship', likes: 500, id: 105 }
+        ];
+
+        // =========================
+        // SOME
+        // =========================
+
+        console.log(
+            developers.some(dev => dev.age < 18) // at least one under 18
+        );
+
+        console.log(
+            developers.some(dev => dev.language === 'Python')
+        );
+
+        console.log(
+            developers.some(dev => dev.projects > 10)
+        );
+
+        // =========================
+        // EVERY
+        // =========================
+
+        console.log(
+            developers.every(dev => dev.age >= 16)
+        );
+
+        console.log(
+            developers.every(dev => dev.projects >= 1)
+        );
+
+        console.log(
+            developers.every(dev => dev.language === 'JavaScript')
+        );
+
+        // =========================
+        // FIND
+        // =========================
+
+        const post104 = posts.find(post => post.id === 104);
+        console.log(post104);
+
+        const sara = developers.find(dev => dev.name === "Sara");
+        console.log(sara);
+
+        const coolDev = developers.find(dev => dev.projects > 10);
+        console.log(coolDev);
+
+        // =========================
+        // FIND INDEX
+        // =========================
+
+        const index103 = posts.findIndex(post => post.id === 103);
+        console.log(index103);
+
+        const ahmedIndex = developers.findIndex(dev => dev.name === "Ahmed");
+        console.log(ahmedIndex);
+
+        // =========================
+        // DELETE POST (splice)
+        // =========================
+
+        const delIndex = posts.findIndex(post => post.id === 102);
+        posts.splice(delIndex, 1);
+
+        console.log(posts);
+
+        // =========================
+        // DELETE DEVELOPER (Yonas)
+        // =========================
+
+        const yonasIndex = developers.findIndex(dev => dev.name === "Yonas");
+        developers.splice(yonasIndex, 1);
+
+        console.log(developers);
+
+        // =========================
+        // MOST PRODUCTIVE
+        // =========================
+
+        const mostProductive = developers.reduce((max, dev) =>
+            dev.projects > max.projects ? dev : max
+        );
+
+        console.log(mostProductive);
+
+        // =========================
+        // TOTAL PROJECTS
+        // =========================
+
+        const totalProjects = developers.reduce((sum, dev) => sum + dev.projects, 0);
+        console.log(totalProjects);
+
+        // =========================
+        // AVERAGE AGE
+        // =========================
+
+        const avgAge = developers.reduce((sum, dev) => sum + dev.age, 0) / developers.length;
+        console.log(avgAge);
+
+        // =========================
+        // LOWEST PROJECTS
+        // =========================
+
+        const leastProductive = developers.reduce((min, dev) =>
+            dev.projects < min.projects ? dev : min
+        );
+
+        console.log(leastProductive);
+
+        // =========================
+        // LANGUAGE COUNT
+        // =========================
+
+        const countLang = developers.reduce((acc, dev) => {
+            acc[dev.language] = (acc[dev.language] || 0) + 1;
+            return acc;
+        }, {});
+
+        console.log(countLang);
+
+    </script>
+</body>
+
+</html>
