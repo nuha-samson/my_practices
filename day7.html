@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Affirmation Generator</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 50vh;
+            background-image: url('window.jpg');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+            font-family: "Pixelify Sans", sans-serif;
+        }
+
+        h1 {
+            color: rgb(243, 79, 169);
+            font-size: 2.5rem;
+            text-align: center;
+
+            max-width: 700px;
+            padding: 20px;
+            line-height: 1.5;
+
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(6px);
+            border-radius: 20px;
+            margin-top: 25%;
+        }
+
+        #btn {
+            margin-top: 50px;
+            width: 200px;
+            height: 50px;
+
+
+            border-radius: 20px;
+            border: 2px solid rgb(133, 51, 78);
+
+            background: rgb(255, 103, 186);
+            color: white;
+
+            font-size: 1.2rem;
+            cursor: pointer;
+
+            transition: 0.3s;
+        }
+
+        #btn:hover {
+            transform: scale(1.05);
+            background: rgb(122, 14, 73);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 id="affirm">Hey! Diva ✨</h1>
+
+    <button id="btn">Affirmation pls</button>
+
+    <script>
+        const picker = document.getElementById('affirm');
+        const btn = document.getElementById('btn');
+
+        const affirmations = [
+            "Every bug I solve makes me a stronger developer.",
+            "Confusion is part of the learning process.",
+            "I don't need to know everything to start building.",
+            "My projects improve with every version.",
+            "Today's practice becomes tomorrow's opportunity.",
+            "I am becoming better every day.",
+            "My consistency creates opportunities.",
+            "I trust my ability to learn difficult things.",
+            "I finish what I start.",
+            "I am building skills that will pay me for years.",
+            "Small progress is still progress.",
+            "I can handle challenges calmly.",
+            "My future is shaped by today's actions.",
+            "I learn from every mistake.",
+            "I am capable of creating valuable things."
+        ];
+
+        btn.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * affirmations.length);
+            picker.textContent = affirmations[randomIndex];
+        });
+    </script>
+
+</body>
+
+</html>
